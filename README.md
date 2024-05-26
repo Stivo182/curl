@@ -12,7 +12,7 @@
 ### GET Запрос
 ```bsl
 Json = Обработки.cURL.Создать()
-        .POST("https://example.com/v1/api")
+        .GET("https://example.com/v1/api")
         .ОтветКакJson());
 ```
 
