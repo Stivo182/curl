@@ -22,8 +22,26 @@ Json = Обработки.cURL
 ДвоичныеДанные = Обработки.cURL
         .Создать()
         .УстановитьЗаголовки(Заголовки)
-        .POST("https://example.com/v1/api", "param1=01.01.2000&param2=true")
+        .POST("https://example.com/v1/api", Новый Структура("param1, param2", Дата(2020, 1, 1), Истина))
         .ОтветКакДвоичныеДанные());
+```
+
+### Аутентификация
+
+#### Basic Authentication
+```bsl
+Обработки.cURL
+        .Создать()
+        .АутентификацияНаСервере("user", "secret")
+        .GET("https://example.com/auth")
+```
+
+#### Digest Authentication
+```bsl
+Обработки.cURL
+        .Создать()
+        .АутентификацияНаСервереDigest("user", "secret")
+        .GET("https://example.com/digest-auth")
 ```
 
 ### Эмуляция браузера (Chrome)
@@ -39,5 +57,5 @@ HTMLТекст = Обработки.cURL
 ```bsl
 curl = Обработки.cURL
         .Создать()
-        .УказатьИсполняемыйФайл(ПутьКCURLexe);
+        .УказатьИсполняемыйФайл("path/to/curl.exe");
 ```
