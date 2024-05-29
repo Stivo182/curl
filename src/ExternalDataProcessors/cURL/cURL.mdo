@@ -9,4 +9,12 @@
     <value>cURL</value>
   </synonym>
   <containedObjects classId="c3831ec8-d8d5-4f93-8a22-f9bfae07327f" objectId="ed5c9fed-be50-4513-baed-af4dc104668d"/>
+  <templates uuid="463d8a91-c32b-4b9f-8a37-561dca86f930">
+    <name>ChromeHeaders</name>
+    <synonym>
+      <key>ru</key>
+      <value>Chrome headers</value>
+    </synonym>
+    <templateType>TextDocument</templateType>
+  </templates>
 </mdclass:ExternalDataProcessor>
