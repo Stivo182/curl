@@ -13,7 +13,7 @@
 ```bsl
 Json = Обработки.cURL
         .Создать()
-        .GET("https://example.com/v1/api")
+        .Get("https://example.com/v1/api")
         .ОтветКакJson());
 ```
 
@@ -22,7 +22,7 @@ Json = Обработки.cURL
 ДвоичныеДанные = Обработки.cURL
         .Создать()
         .УстановитьЗаголовки(Заголовки)
-        .POST("https://example.com/v1/api", Новый Структура("param1, param2", Дата(2020, 1, 1), Истина))
+        .Post("https://example.com/v1/api", Новый Структура("param1, param2", Дата(2020, 1, 1), Истина))
         .ОтветКакДвоичныеДанные());
 ```
 
@@ -33,7 +33,7 @@ Json = Обработки.cURL
 Обработки.cURL
         .Создать()
         .ПеренаправлятьЗапрос()
-        .GET("https://example.com/301.html");
+        .Get("https://example.com/301.html");
 ```
 
 #### С аутентификацией
@@ -42,7 +42,7 @@ Json = Обработки.cURL
         .Создать()
         .ПеренаправлятьЗапрос(, Истина)
         .АутентификацияНаСервере("user", "secret")
-        .GET("https://example.com/301.html");
+        .Get("https://example.com/301.html");
 ```
 
 #### Без аутентификации
@@ -53,7 +53,7 @@ Json = Обработки.cURL
         .Создать()
         .ПеренаправлятьЗапрос()
         .АутентификацияНаСервере("user", "secret")
-        .GET("https://example.com/301.html");
+        .Get("https://example.com/301.html");
 ```
 
 ### Аутентификация
@@ -63,7 +63,7 @@ Json = Обработки.cURL
 Обработки.cURL
         .Создать()
         .АутентификацияНаСервере("user", "secret")
-        .GET("https://example.com/auth")
+        .Get("https://example.com/auth")
 ```
 
 #### Digest Authentication
@@ -71,7 +71,7 @@ Json = Обработки.cURL
 Обработки.cURL
         .Создать()
         .АутентификацияНаСервереDigest("user", "secret")
-        .GET("https://example.com/digest-auth")
+        .Get("https://example.com/digest-auth")
 ```
 
 ### Эмуляция браузера (Chrome)
@@ -79,7 +79,7 @@ Json = Обработки.cURL
 HTMLТекст = Обработки.cURL
         .Создать()
         .ЭмуляцияБраузера()
-        .GET("https://example.com/page1.html")
+        .Get("https://example.com/page1.html")
         .ОтветКакТекст());
 ```
 
