@@ -55,7 +55,7 @@
 
 Процедура ТестДолженВыполнить_GET() Экспорт
 	
-	CURL.GET("https://httpbin.org/get");
+	CURL.Get("https://httpbin.org/get");
 	
 	Ожидаем.Что(CURL.КодСостояния()).Равно(200);
 	
@@ -65,7 +65,7 @@
 	
 	Агент = "1C:Enterprise";
 	Ответ = CURL.УстановитьЗаголовок("User-Agent", Агент)
-				.GET("https://httpbin.org/get")
+				.Get("https://httpbin.org/get")
 				.ОтветКакJson();
 	
 	Ожидаем.Что(Ответ["headers"]["User-Agent"]).Равно(Агент);
@@ -74,7 +74,7 @@
 
 Процедура ТестДолженВыполнить_POST_БезТела() Экспорт
 	
-	CURL.POST("https://httpbin.org/post");
+	CURL.Post("https://httpbin.org/post");
 	
 	Ожидаем.Что(CURL.КодСостояния()).Равно(200);
 	
@@ -82,7 +82,7 @@
 
 Процедура ТестДолженВыполнить_POST_ТелоТекст() Экспорт
 	
-	Ответ = CURL.POST("https://httpbin.org/post", "name=blink&id=182").ОтветКакJson();
+	Ответ = CURL.Post("https://httpbin.org/post", "name=blink&id=182").ОтветКакJson();
 	
 	Ожидаем
 		.Что(Ответ["form"]["name"]).Равно("blink")
@@ -99,7 +99,7 @@
 	Тело.Вставить("Cyrillic", "Йогурт");
 	Тело.Вставить("SpecChars", "p=1&p=2");
 
-	Ответ = CURL.POST("https://httpbin.org/post", Тело).ОтветКакJson();
+	Ответ = CURL.Post("https://httpbin.org/post", Тело).ОтветКакJson();
 	
 	Ожидаем
 		.Что(Ответ["form"]["Name"]).Равно("blink")
@@ -119,7 +119,7 @@
 	Тело.Вставить("Cyrillic", "Йогурт");
 	Тело.Вставить("SpecChars", "p=1&p=2");
 
-	Ответ = CURL.POST("https://httpbin.org/post", Тело).ОтветКакJson();
+	Ответ = CURL.Post("https://httpbin.org/post", Тело).ОтветКакJson();
 	
 	Ожидаем
 		.Что(Ответ["form"]["Name"]).Равно("blink")
@@ -137,7 +137,7 @@
 	
 	Тело = Поток.ЗакрытьИПолучитьДвоичныеДанные();   
 	
-	Ответ = CURL.POST("https://httpbin.org/post", Тело).ОтветКакJson();
+	Ответ = CURL.Post("https://httpbin.org/post", Тело).ОтветКакJson();
 				
 	Ожидаем.Что(Ответ["headers"]["Content-Length"]).Равно("16");
 	
@@ -154,7 +154,7 @@
   	Файл = Новый Файл(ПутьКФайлу);
 	
 	Попытка
-		Ответ = CURL.POST("https://httpbin.org/post", Файл).ОтветКакJson();
+		Ответ = CURL.Post("https://httpbin.org/post", Файл).ОтветКакJson();
 	Исключение
 		УдалитьФайлы(ПутьКФайлу);	
 		ВызватьИсключение ОбработкаОшибок.ПодробноеПредставлениеОшибки(ИнформацияОбОшибке());
@@ -173,7 +173,7 @@
   	
   	Адрес = ПоместитьВоВременноеХранилище(ДвоичныеДанные);
 	
-	Ответ = CURL.POST("https://httpbin.org/post", Адрес).ОтветКакJson();
+	Ответ = CURL.Post("https://httpbin.org/post", Адрес).ОтветКакJson();
 				
 	Ожидаем.Что(Ответ["headers"]["Content-Length"]).Равно("16");
 	
@@ -182,7 +182,7 @@
 Процедура ТестДолженВыполнить_АутентификациюBasic() Экспорт
 
 	Ответ = CURL.АутентификацияНаСервере("user", "secret")
-				.GET("https://httpbin.org/basic-auth/user/secret")
+				.Get("https://httpbin.org/basic-auth/user/secret")
 				.ОтветКакJson();
 	
 	Ожидаем
@@ -195,7 +195,7 @@
 Процедура ТестДолженВыполнить_АутентификациюDigest() Экспорт
 
 	Ответ = CURL.АутентификацияНаСервереDigest("user", "secret")
-				.GET("https://httpbin.org/digest-auth/auth/user/secret")
+				.Get("https://httpbin.org/digest-auth/auth/user/secret")
 				.ОтветКакJson();
 	
 	Ожидаем
@@ -210,7 +210,7 @@
 	Location = КодироватьСтроку("https://httpbin.org/status/200", СпособКодированияСтроки.КодировкаURL);
 	URL = СтрШаблон("https://httpbin.org/redirect-to?url=%1&status_code=301", Location);
 	
-	CURL.ПеренаправлятьЗапрос().GET(URL);
+	CURL.ПеренаправлятьЗапрос().Get(URL);
 	
 	Ожидаем.Что(CURL.КодСостояния()).Равно(200);
 	
@@ -221,7 +221,7 @@
 	Location = КодироватьСтроку("https://httpbin.org/status/200", СпособКодированияСтроки.КодировкаURL);
 	URL = СтрШаблон("https://httpbin.org/redirect-to?url=%1&status_code=301", Location);
 	
-	CURL.GET(URL);
+	CURL.Get(URL);
 	
 	Ожидаем.Что(CURL.КодСостояния()).Равно(301);
 	
@@ -232,7 +232,7 @@
 	Location = КодироватьСтроку("https://httpbin.org/basic-auth/user/secret", СпособКодированияСтроки.КодировкаURL);
 	URL = СтрШаблон("https://httpbin.org/redirect-to?url=%1&status_code=301", Location);
 	
-	CURL.ПеренаправлятьЗапрос().GET(URL);
+	CURL.ПеренаправлятьЗапрос().Get(URL);
 	
 	Ожидаем.Что(CURL.КодСостояния()).Равно(401);
 	
@@ -246,7 +246,7 @@
 	Ответ = CURL
 		.ПеренаправлятьЗапрос(Истина, Истина)
 		.АутентификацияНаСервере("user", "secret")
-		.GET(URL)
+		.Get(URL)
 		.ОтветКакJson();
 	
 	Ожидаем
