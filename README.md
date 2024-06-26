@@ -1,3 +1,6 @@
+[![Release](https://img.shields.io/github/release/Stivo182/curl.svg)](https://github.com/Stivo182/curl/releases)
+[![Статус порога качества](https://sonar.openbsl.ru/api/project_badges/measure?project=curl&metric=alert_status&token=sqb_c82633798d56e9c8cb7596cdc9b58cb18d23e356)](https://sonar.openbsl.ru/dashboard?id=curl)
+
 # cURL для 1С:Предприятие 8
 
 ## Использование:
