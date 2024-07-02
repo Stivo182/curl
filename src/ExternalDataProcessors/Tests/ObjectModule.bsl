@@ -423,7 +423,8 @@
 	Location = КодироватьСтроку("https://httpbin.org/status/200", СпособКодированияСтроки.КодировкаURL);
 	URL = СтрШаблон("https://httpbin.org/redirect-to?url=%1&status_code=301", Location);
 	
-	Curl.ПеренаправлятьЗапрос().Get(URL);
+	Curl.РазрешатьПеренаправления()
+		.Get(URL);
 	
 	Ожидаем.Что(Curl.КодСостояния()).Равно(КодСостоянияHTTP200());
 	
@@ -446,7 +447,7 @@
 	URL = СтрШаблон("https://httpbin.org/redirect-to?url=%1&status_code=301", Location);
 	
 	Ответ = Curl
-		.ПеренаправлятьЗапрос()
+		.РазрешатьПеренаправления()
 		.Аутентификация("user", "secret")
 		.Get(URL)
 		.ОтветКакJson();
@@ -462,7 +463,7 @@
 	URL = СтрШаблон("https://httpbin.org/redirect-to?url=%1&status_code=301", Location);
 
 	Ответ = Curl
-		.ПеренаправлятьЗапрос(, Истина)
+		.РазрешатьПеренаправления(Истина, Истина)
 		.Аутентификация("user", "secret")
 		.Get(URL)
 		.ОтветКакJson();
