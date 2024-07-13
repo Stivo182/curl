@@ -15,6 +15,11 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+
+    - name: Извлечение версии обработки
+      shell: bash
+      run: echo "version=`cat ./src/ExternalDataProcessors/cURL/ObjectModule.bsl | grep -Poz '(?sU)(?<=Функция ВерсияОбработки\(\))(.*)(?=КонецФункции)' | grep -Poz '"(.*)"'`"  >> $GITHUB_OUTPUT
+      id: extract_version
         
     - name: Вычисление имени ветки
       uses: nelonoel/branch-name@v1.0.1
@@ -31,6 +36,7 @@ jobs:
       run: sonar-scanner
         -Dsonar.host.url=https://sonar.openbsl.ru
         -Dsonar.branch.name=${{ env.BRANCH_NAME }}
+        -Dsonar.projectVersion=${{ steps.extract_version.outputs.version }}
         
     # Анализ проекта в SonarQube (пулл-реквест)
     - name: Анализ в SonarQube (pull-request)
