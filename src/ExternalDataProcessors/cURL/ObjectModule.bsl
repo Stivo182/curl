@@ -1,3 +1,7 @@
+// Copyright (c) 2024 Dmitry Ivanov <ivanovdmitry91@gmail.com>.
+// Licensed under the MIT License.
+// https://github.com/Stivo182/curl/blob/master/LICENSE
+
 // @strict-types
 
 #Если Сервер Или ТолстыйКлиентОбычноеПриложение Или ВнешнееСоединение Тогда
